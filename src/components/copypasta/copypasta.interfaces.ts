@@ -1,3 +1,5 @@
+import { Copypasta } from '~/types/copypasta'
+
 export interface CopypastaProps {
-  prop: string
+  entry: Copypasta
 }

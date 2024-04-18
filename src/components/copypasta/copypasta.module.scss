@@ -1,3 +1,12 @@
-.container{
-  
+.copypasta{
+  padding: var(--spacing-8);
+  background: var(--theme-0);
+  border-radius: 24px 24px 24px 0;
+  color: var(--theme-800);
+  font-size: var(--font-500);
+  line-height: 130%;
+
+  strong{
+    font-weight: 900;
+  }
 }
