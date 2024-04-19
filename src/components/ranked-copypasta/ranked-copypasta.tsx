@@ -3,12 +3,21 @@ import { RankedCopypastaProps } from '~/components/ranked-copypasta/ranked-copyp
 import styles from '~/components/ranked-copypasta/ranked-copypasta.module.scss'
 import { CopypastaEntry } from '~/types/copypasta'
 
-const RankedCopypasta: Component<RankedCopypastaProps> = ({ entry, onDrop }) => {
+const RankedCopypasta: Component<RankedCopypastaProps> = ({ entry, onDrop, removeSelf }) => {
   const formattedText = () => {
     const wordsArray = entry.text.split(' ')
     const emphasis = wordsArray.slice(0, 7).join(' ')
     const restOfMessage = wordsArray.slice(7).join(' ')
     return `<strong>${emphasis}</strong> ${restOfMessage}`
+  }
+
+  const onDragStart = (event: DragEvent) => {
+    event.dataTransfer?.setData('pasta', JSON.stringify(entry))
+  }
+  const onDragEnd = (event: DragEvent) => {
+    if (event.dataTransfer?.dropEffect !== 'none') {
+      removeSelf()
+    }
   }
 
   const [isDraggedOver, setIsDraggedOver] = createSignal(false)
@@ -42,6 +51,8 @@ const RankedCopypasta: Component<RankedCopypastaProps> = ({ entry, onDrop }) => 
       classList={cssClasses()}
       innerHTML={formattedText()}
       draggable={true}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
       onDragEnter={onDragEnter}
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}

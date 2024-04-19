@@ -3,7 +3,7 @@ import { TierPlaceholderProps } from '~/components/tier-placeholder/tier-placeho
 import styles from '~/components/tier-placeholder/tier-placeholder.module.scss'
 import { CopypastaEntry } from '~/types/copypasta'
 
-const TierPlaceholder: Component<TierPlaceholderProps> = ({ onDrop }) => {
+const TierPlaceholder: Component<TierPlaceholderProps> = ({ onDrop, origin }) => {
   const [isDraggedOver, setIsDraggedOver] = createSignal(false)
   const cssClasses = () => ({
     [styles.placeholder]: true,
@@ -21,10 +21,11 @@ const TierPlaceholder: Component<TierPlaceholderProps> = ({ onDrop }) => {
     setIsDraggedOver(false)
   }
   const onDropHandler = (event: DragEvent) => {
-    const copypastaPayload = event.dataTransfer?.getData('pasta')
-    if (copypastaPayload) {
-      const copypasta: CopypastaEntry = JSON.parse(copypastaPayload)
-      onDrop(copypasta)
+    const payload = event.dataTransfer?.getData('pasta')
+    const pastaOrigin = event.dataTransfer?.getData('pasta/origin')
+    if (payload && pastaOrigin) {
+      const copypasta: CopypastaEntry = JSON.parse(payload)
+      onDrop(copypasta, pastaOrigin)
     } else {
       throw new Error('Invalid dataTransfer value on TierPlaceholder onDropHandler')
     }
