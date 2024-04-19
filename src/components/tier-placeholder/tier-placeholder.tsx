@@ -1,6 +1,7 @@
 import { Component, createSignal } from 'solid-js'
 import { TierPlaceholderProps } from '~/components/tier-placeholder/tier-placeholder.interfaces'
 import styles from '~/components/tier-placeholder/tier-placeholder.module.scss'
+import { CopypastaEntry } from '~/types/copypasta'
 
 const TierPlaceholder: Component<TierPlaceholderProps> = ({ onDrop }) => {
   const [isDraggedOver, setIsDraggedOver] = createSignal(false)
@@ -20,8 +21,9 @@ const TierPlaceholder: Component<TierPlaceholderProps> = ({ onDrop }) => {
     setIsDraggedOver(false)
   }
   const onDropHandler = (event: DragEvent) => {
-    const copypasta = event.dataTransfer?.getData('pasta')
-    if (copypasta) {
+    const copypastaPayload = event.dataTransfer?.getData('pasta')
+    if (copypastaPayload) {
+      const copypasta: CopypastaEntry = JSON.parse(copypastaPayload)
       onDrop(copypasta)
     } else {
       throw new Error('Invalid dataTransfer value on TierPlaceholder onDropHandler')

@@ -1,1 +1,4 @@
-export type CopypastaEntry = string
+export interface CopypastaEntry{
+  id: number
+  text: string
+}
