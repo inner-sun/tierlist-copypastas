@@ -1,6 +1,7 @@
 import { Component, For, JSX, createSignal } from 'solid-js'
 import Copypasta from '~/components/copypasta/copypasta'
 import RankedCopypasta from '~/components/ranked-copypasta/ranked-copypasta'
+import TierPlaceholder from '~/components/tier-placeholder/tier-placeholder'
 import { TierProps } from '~/components/tier/tier.interfaces'
 import styles from '~/components/tier/tier.module.scss'
 import { CopypastaEntry } from '~/types/copypasta'
@@ -13,10 +14,13 @@ const Tier: Component<TierProps> = ({ color, label }) => {
 
   const entriesPerRow = 5
   const renderPlaceholders = () => {
-    const placeholdersToDisplay = entries().length !== 0 ? entriesPerRow - (entries().length % entriesPerRow) : entriesPerRow
+    const entriesCount = entries().length
+    const placeholdersToDisplay = entriesCount !== 0 ? entriesPerRow - (entriesCount % entriesPerRow) : entriesPerRow
     const components: JSX.Element = []
     for(let i = 0; i<placeholdersToDisplay; i++){
-      components.push(<div class={styles.placeholder} />)
+      components.push(
+        <TierPlaceholder onDrop={appendEntry(entriesCount)} />
+      )
     }
     return components
   }
