@@ -1,1 +1,1 @@
-export type Copypasta = string
+export type CopypastaEntry = string

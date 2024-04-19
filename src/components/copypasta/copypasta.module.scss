@@ -9,4 +9,8 @@
   strong{
     font-weight: 900;
   }
+
+  &:hover{
+    cursor: move;
+  }
 }

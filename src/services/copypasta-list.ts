@@ -1,7 +1,7 @@
 import pastas from '~/assets/list.txt?raw'
-import { Copypasta } from '~/types/copypasta'
+import { CopypastaEntry } from '~/types/copypasta'
 
-const getCopypastaList = (): Copypasta[] => {
+const getCopypastaList = (): CopypastaEntry[] => {
   return pastas.split('\n')
 }
 

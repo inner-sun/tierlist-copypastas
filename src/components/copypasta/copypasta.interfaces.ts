@@ -1,5 +1,5 @@
-import { Copypasta } from '~/types/copypasta'
+import { CopypastaEntry } from '~/types/copypasta'
 
 export interface CopypastaProps {
-  entry: Copypasta
+  entry: CopypastaEntry
 }

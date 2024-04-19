@@ -10,10 +10,16 @@ const Copypasta: Component<CopypastaProps> = ({ entry }) => {
     return `<strong>${emphasis}</strong> ${restOfMessage}`
   }
 
+  const onDragStart = (event: DragEvent) => {
+    event.dataTransfer?.setData('pasta', entry)
+  }
+
   return (
     <div
+      draggable={true}
       class={styles.copypasta}
       innerHTML={formattedText()}
+      onDragStart={onDragStart}
     />
   )
 }
