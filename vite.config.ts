@@ -1,6 +1,7 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import solidPlugin from 'vite-plugin-solid'
+import dsv from '@rollup/plugin-dsv'
 
 export default defineConfig({
   resolve: {
@@ -10,6 +11,7 @@ export default defineConfig({
   },
   plugins: [
     solidPlugin(),
+    dsv(),
   ],
   server: {
     port: 3000,
