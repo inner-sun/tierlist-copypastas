@@ -1,10 +1,10 @@
-import pastas from '~/assets/list.txt?raw'
+import pastas from '~/assets/list.csv'
 import { CopypastaEntry } from '~/types/copypasta'
 
 const getCopypastaList = (): CopypastaEntry[] => {
-  return pastas.split('\n').map((entry, index) => ({
+  return pastas.map((entry, index) => ({
     id: index,
-    text: entry
+    text: entry.pasta
   }))
 }
 

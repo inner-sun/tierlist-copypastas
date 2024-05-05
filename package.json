@@ -11,6 +11,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-dsv": "^3.0.4",
     "@types/node": "^20.12.7",
     "solid-devtools": "^0.29.2",
     "typescript": "^5.3.3",
