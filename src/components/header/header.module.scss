@@ -1,0 +1,15 @@
+.header{
+  padding: var(--spacing-4) var(--spacing-8);
+  background: var(--theme-900);
+  border-radius: 24px 24px 24px 0;
+  box-shadow: -5px 5px 0 0 var(--theme-0);
+  margin-bottom: 20px;
+  color: var(--theme-0);
+  font-weight: 900;
+  font-size: var(--font-800);
+  text-transform: uppercase;
+
+  strong{
+    color: var(--theme-700);
+  }
+}
